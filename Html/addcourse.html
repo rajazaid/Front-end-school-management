@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Add Student</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
+<style>
+    .navbar{
+        box-shadow: 0px 0px 30px rgba(65, 68, 73, 0.25);
+    }
+    
+</style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light py-4 sticky-top" style="background-color: #f5f9f9;">
+        <a class="navbar-brand mx-3" href="#"><img src="../img/logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+            GLPSS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end mx-4" id="navbarNav">
+          <ul class="navbar-nav ">
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="../Html/index.html"><i class="fas fa-home"></i> Home</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="../Html/userlist.html"><i class="fas fa-users"></i> User List</a>
+            </li>
+            <li class="nav-item mx-2 active">
+              <a class="nav-link" href="../Html/addcourse.html"><i class="fas fa-user-plus"></i> Add New Student</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="#"><i class="fas fa-file-alt"></i> Reports</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="../Html/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </li>
+          </ul>
+
+        </div>
+      </nav>
+
+  <div class="content">
+    <div class="container mt-5">
+      <h2>Add a New Student</h2>
+      <form id="studentForm">
+        <div class="form-group">
+          <label for="name">Student Name:</label>
+          <input type="text" class="form-control" id="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Student Email:</label>
+          <input type="email" class="form-control" id="email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" class="form-control" id="password" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone No:</label>
+          <input type="tel" class="form-control" id="phone" required>
+        </div>
+        <button type="submit" class="btn btn-secondary btn-block">Add Student</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('studentForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const phone = document.getElementById('phone').value;
+
+      const newStudent = {
+        Name: name,
+        Email: email,
+        Password: password,
+        PhoneNumber: phone,
+        Enrollments: [], 
+        Payments: [] 
+      };
+
+      try {
+        const response = await fetch('https://localhost:7257/api/Students', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(newStudent)
+        });
+
+        if (response.ok) {
+          alert('Student added successfully!');
+          document.getElementById('studentForm').reset();
+        } else {
+          const errorData = await response.json();
+          alert('Error adding student: ' + (errorData.message || 'Unknown error'));
+          console.log(errorData);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Added successfully..');
+      }
+    });
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

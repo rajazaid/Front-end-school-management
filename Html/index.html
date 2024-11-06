@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>GLPSS</title>
+
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../JS/index.js"></script>
+
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .content {
+      flex: 1;
+      padding: 20px;
+      background: #fdfdfd;
+    }
+    .chart-container {
+      width: 100%;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    .chart-row {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+    .chart-wrapper {
+      flex: 1;
+      min-width: 300px; 
+      max-width: 45%; 
+      margin: 10px; 
+    }
+    .navbar{
+        box-shadow: 0px 0px 30px rgba(65, 68, 73, 0.25);
+    }
+  </style>
+</head>
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light py-4 sticky-top" style="background-color: #f5f9f9;">
+        <a class="navbar-brand mx-3" href="#"><img src="../img//logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+            GLPSS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end mx-4" id="navbarNav">
+          <ul class="navbar-nav justify-content-end">
+            <li class="nav-item mx-2 active">
+              <a class="nav-link" href="../Html/index.html"><i class="fas fa-home"></i> Home</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="../Html/userlist.html"><i class="fas fa-users"></i> User List</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="../Html/addcourse.html"><i class="fas fa-user-plus"></i> Add New Student</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="#"><i class="fas fa-file-alt"></i> Reports</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="../Html/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+  <div class="content">
+    <h1 class="text-center">Welcome to the Dashboard</h1>
+
+    <div class="chart-row">
+      <div class="chart-wrapper">
+        <canvas id="studentsChart"></canvas>
+      </div>
+      <div class="chart-wrapper">
+        <canvas id="teachersChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-container">
+      <canvas id="coursesChart"></canvas>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
