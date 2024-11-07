@@ -2,7 +2,7 @@ let currentStudent;
 
 function fetchStudents() {
     $.ajax({
-        url: 'https://localhost:7257/api/Students',
+        url: 'https://localhost:7257/api/Student',
         method: 'GET',
         success: function(data) {
             $('#user-list').empty();
@@ -13,8 +13,8 @@ function fetchStudents() {
                         <td>${student.name}</td>
                         <td>${student.email}</td>
                         <td>
-                            <button class="btn btn-primary btn-sm" onclick="openEditModal(${student.studentId})">Edit</button>
-                            <button class="btn btn-danger btn-sm" onclick="deleteStudent(${student.studentId})">Delete</button>
+                            <button class="btn btn-primary btn-md" onclick="openEditModal(${student.studentId})">Edit</button>
+                            <button class="btn btn-danger btn-md" onclick="deleteStudent(${student.studentId})">Delete</button>
                         </td>
                     </tr>
                 `);
@@ -29,7 +29,7 @@ function fetchStudents() {
 
 function openEditModal(id) {
     $.ajax({
-        url: `https://localhost:7257/api/Students/${id}`,
+        url: `https://localhost:7257/api/Student/${id}`,
         method: 'GET',
         success: function(student) {
             currentStudent = student;
@@ -47,7 +47,7 @@ function openEditModal(id) {
 function deleteStudent(id) {
     if (confirm('Are you sure you want to delete this student?')) {
         $.ajax({
-            url: `https://localhost:7257/api/Students/${id}`,
+            url: `https://localhost:7257/api/Student/${id}`,
             method: 'DELETE',
             success: function() {
                 alert('Student deleted successfully.');
@@ -74,7 +74,7 @@ $(document).ready(function() {
         };
 
         $.ajax({
-            url: `https://localhost:7257/api/Students/${updatedStudent.studentId}`,
+            url: `https://localhost:7257/api/Student/${updatedStudent.studentId}`,
             method: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify(updatedStudent),

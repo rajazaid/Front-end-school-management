@@ -17,6 +17,7 @@
       flex-direction: column;
       min-height: 100vh;
       overflow-x: hidden;
+      background-color: rgb(160, 161, 162);
     }
     .content {
       flex: 1;
@@ -27,6 +28,8 @@
       width: 100%;
       max-width: 600px;
       margin: 20px auto;
+      background-color: aliceblue;
+      
     }
     .chart-row {
       display: flex;
@@ -39,6 +42,8 @@
       min-width: 300px; 
       max-width: 45%; 
       margin: 10px; 
+      padding: 10px;
+      box-shadow: 0px 0px 10px #848585;
     }
     .navbar{
         box-shadow: 0px 0px 30px rgba(65, 68, 73, 0.25);
@@ -87,7 +92,7 @@
       </div>
     </div>
     <div class="chart-container">
-      <canvas id="coursesChart"></canvas>
+      <canvas id="coursesChart" style="box-shadow: 0px 0px 10px #848585; padding: 10px;"></canvas>
     </div>
   </div>
 

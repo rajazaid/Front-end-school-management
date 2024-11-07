@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const apiCoursesUrl = 'https://localhost:7257/api/Courses';
-    const apiTeachersUrl = 'https://localhost:7257/api/Teachers';
-    const apiStudentsUrl = 'https://localhost:7257/api/Students';
+    const apiCoursesUrl = 'https://localhost:7257/api/Course';
+    const apiTeachersUrl = 'https://localhost:7257/api/Teacher';
+    const apiStudentsUrl = 'https://localhost:7257/api/Student';
 
     async function fetchData() {
       try {
@@ -70,8 +70,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function fetchCoursesAndTeachers() {
-        const apiCoursesUrl = 'https://localhost:7257/api/Courses';
-        const apiTeachersUrl = 'https://localhost:7257/api/Teachers';
+        const apiCoursesUrl = 'https://localhost:7257/api/Course';
+        const apiTeachersUrl = 'https://localhost:7257/api/Teacher';
     
         try {
             const [coursesResponse, teachersResponse] = await Promise.all([
