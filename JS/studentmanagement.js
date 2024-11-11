@@ -1,9 +1,13 @@
 let currentStudent;
+ const token = localStorage.getItem("token");
 
 function fetchStudents() {
     $.ajax({
         url: 'https://localhost:7257/api/Student',
         method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}` 
+          },
         success: function(data) {
             $('#user-list').empty();
             data.forEach(student => {
@@ -31,6 +35,9 @@ function openEditModal(id) {
     $.ajax({
         url: `https://localhost:7257/api/Student/${id}`,
         method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}` 
+          },
         success: function(student) {
             currentStudent = student;
             $('#studentName').val(student.name);
@@ -49,6 +56,9 @@ function deleteStudent(id) {
         $.ajax({
             url: `https://localhost:7257/api/Student/${id}`,
             method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}` 
+              },
             success: function() {
                 alert('Student deleted successfully.');
                 fetchStudents();
@@ -76,6 +86,9 @@ $(document).ready(function() {
         $.ajax({
             url: `https://localhost:7257/api/Student/${updatedStudent.studentId}`,
             method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${token}` 
+              },
             contentType: 'application/json',
             data: JSON.stringify(updatedStudent),
             success: function() {

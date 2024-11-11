@@ -124,3 +124,49 @@ body::before {
 .signup label:hover {
   text-decoration: underline;
 }
+
+
+.custom-checkbox {
+  display: none;
+}
+
+
+.custom-checkbox {
+  display: none;
+}
+
+
+.custom-checkbox + label {
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+}
+
+
+.custom-checkbox + label::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ccc;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+
+.custom-checkbox:checked + label::before {
+  background-color: #4CAF50; 
+  border-color: #4CAF50;
+}
+
+.custom-checkbox:checked + label::after {
+  content: '✔';
+  position: absolute;
+  left: 4px;
+  top: 0px;
+  font-size: 14px;
+  color: white;
+}
+
+
+

@@ -8,18 +8,19 @@
   
   <link rel="stylesheet" href="../CSS/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CDN -->
-<script src="../JS/index.js"></script>
+  <script src="../JS/usermanagement.js"></script>
 </head>
 <body>
   <div class="container">
     <input type="checkbox" id="check">
     
+    <!-- Login Form -->
     <div class="login form">
       <header>Login</header>
-      <form id="loginForm" onsubmit="return validateLoginForm()">
+      <form id="loginForm" onsubmit="return validateLoginForm(event)">
         <div style="position: relative;">
           <i class="fas fa-envelope"></i>
-          <input type="text" id="loginEmail" placeholder="Enter your email" required>
+          <input type="text" id="loginusername" placeholder="Enter your username" required>
         </div>
         <div style="position: relative;">
           <i class="fas fa-lock"></i>
@@ -35,33 +36,50 @@
       </div>
     </div>
 
+    <!-- Registration Form -->
     <div class="registration form">
       <header>Signup</header>
-      <form id="registrationForm" onsubmit="return validateRegistrationForm()">
+      <form id="registrationForm" onsubmit="return validateRegistrationForm(event)">
+        <!-- Username Input -->
+        <div style="position: relative;">
+          <i class="fas fa-user"></i>
+          <input type="text" id="regUsername" placeholder="Enter your username" required>
+        </div>
+        
+        <!-- Email Input -->
         <div style="position: relative;">
           <i class="fas fa-envelope"></i>
           <input type="email" id="regEmail" placeholder="Enter your email" required>
         </div>
+        
+        <!-- Password Input -->
         <div style="position: relative;">
           <i class="fas fa-lock"></i>
           <input type="password" id="regPassword" placeholder="Create a password" required>
         </div>
-        <div style="position: relative;">
-          <i class="fas fa-lock"></i>
-          <input type="password" id="regConfirmPassword" placeholder="Confirm your password" required>
-        </div>
+          
+<div class="custom-checkbox-container">
+  <input type="checkbox" id="isAdmin" class="custom-checkbox">
+  <label for="isAdmin">Admin</label>
+</div>
+
+        
+
+
+        
+    
+        <!-- Submit Button -->
         <input type="submit" class="button" value="Signup">
       </form>
+    
       <div class="signup">
         <span>Already have an account?
-         <label for="check">Login</label>
+          <label for="check">Login</label>
         </span>
       </div>
     </div>
+    
   </div>
 
-  <script>
-    
-  </script>
 </body>
 </html>
