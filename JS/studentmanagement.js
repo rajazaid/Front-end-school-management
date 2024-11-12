@@ -1,27 +1,28 @@
 let currentStudent;
- const token = localStorage.getItem("token");
+const token = localStorage.getItem("token");
 
 function fetchStudents() {
     $.ajax({
         url: 'https://localhost:7257/api/Student',
         method: 'GET',
         headers: {
-            'Authorization': `Bearer ${token}` 
-          },
+            'Authorization': `Bearer ${token}`
+        },
         success: function(data) {
             $('#user-list').empty();
             data.forEach(student => {
-                $('#user-list').append(`
-                    <tr>
+                const row = $(`
+                    <tr onclick="viewStudentDetails(${student.studentId})">
                         <td>${student.studentId}</td>
                         <td>${student.name}</td>
                         <td>${student.email}</td>
                         <td>
-                            <button class="btn btn-primary btn-md" onclick="openEditModal(${student.studentId})">Edit</button>
-                            <button class="btn btn-danger btn-md" onclick="deleteStudent(${student.studentId})">Delete</button>
+                            <button class="btn btn-primary btn-md" onclick="event.stopPropagation(); openEditModal(${student.studentId})">Edit</button>
+                            <button class="btn btn-danger btn-md" onclick="event.stopPropagation(); deleteStudent(${student.studentId})">Delete</button>
                         </td>
                     </tr>
                 `);
+                $('#user-list').append(row);
             });
         },
         error: function(error) {
@@ -31,13 +32,18 @@ function fetchStudents() {
     });
 }
 
+function viewStudentDetails(id) {
+    localStorage.setItem("selectedUserId", id);
+    window.location.href = "../Html/userDetail.html";
+}
+
 function openEditModal(id) {
     $.ajax({
         url: `https://localhost:7257/api/Student/${id}`,
         method: 'GET',
         headers: {
-            'Authorization': `Bearer ${token}` 
-          },
+            'Authorization': `Bearer ${token}`
+        },
         success: function(student) {
             currentStudent = student;
             $('#studentName').val(student.name);
@@ -57,8 +63,8 @@ function deleteStudent(id) {
             url: `https://localhost:7257/api/Student/${id}`,
             method: 'DELETE',
             headers: {
-                'Authorization': `Bearer ${token}` 
-              },
+                'Authorization': `Bearer ${token}`
+            },
             success: function() {
                 alert('Student deleted successfully.');
                 fetchStudents();
@@ -76,7 +82,7 @@ $(document).ready(function() {
 
     $('#editStudentForm').on('submit', function(e) {
         e.preventDefault();
-        
+
         const updatedStudent = {
             ...currentStudent,
             name: $('#studentName').val(),
@@ -87,8 +93,8 @@ $(document).ready(function() {
             url: `https://localhost:7257/api/Student/${updatedStudent.studentId}`,
             method: 'PUT',
             headers: {
-                'Authorization': `Bearer ${token}` 
-              },
+                'Authorization': `Bearer ${token}`
+            },
             contentType: 'application/json',
             data: JSON.stringify(updatedStudent),
             success: function() {
